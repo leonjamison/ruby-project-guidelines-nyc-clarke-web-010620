@@ -1,2 +1,2 @@
-class Award < ActiveRecord::Migration
+class Award < ActiveRecord::Base
 end
