@@ -10,13 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200121180426) do
+ActiveRecord::Schema.define(version: 20200121194907) do
 
-  create_table "missions", force: :cascade do |t|
+  create_table "awards", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.string "award"
-    t.string "soldier"
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string  "name"
+    t.string  "location"
+    t.integer "award_id"
+    t.integer "soldier_id"
   end
 
   create_table "soldiers", force: :cascade do |t|
