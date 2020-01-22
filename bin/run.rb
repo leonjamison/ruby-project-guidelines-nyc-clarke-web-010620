@@ -19,15 +19,20 @@ require_relative '../lib/mission'
 # puts soldiers_awards
 
 
+<<<<<<< HEAD
 Mission.full_mission_details
 # Mission.create_mission
+=======
+
+# Mission.full_mission_details
+>>>>>>> 05d7f47c7aa5a02f3f755d0c8b2842c632e43332
 
 
 # Award.say_hello
 # Soldier.add_a_soldier
 # Mission.verify_mission
 
-
+Soldier.remove_soldier
 
 
 # require 'tty-prompt'
