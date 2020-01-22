@@ -23,4 +23,8 @@ class Mission < ActiveRecord::Base
     end
     #     puts "#{mission_found} is assigned to #{user_input}, located at #{mission_found}"
 
+    # "Create a new mission"
+    def create_mission
+        
+    end
 end
