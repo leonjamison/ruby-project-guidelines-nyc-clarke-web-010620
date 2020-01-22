@@ -1,7 +1,7 @@
 require_relative '../config/environment'
 require_relative '../lib/award.rb'
-require_relative '../lib/soldier'
-require_relative '../lib/mission'
+require_relative '../lib/soldier.rb'
+require_relative '../lib/mission.rb'
 
 # puts "Welcome. What would you like to do?"
 # user_input = gets.chomp
@@ -9,16 +9,19 @@ require_relative '../lib/mission'
 
 
 # "Check soldier's list of awards"
-puts "Please enter soldier's name"
-user_input = gets.chomp
-selectedSoldier = Soldier.find_by(name: user_input)
-puts selectedSoldier
-binding.pry
-# if selectedSoldier {
-#     Soldier.list_awards(user_input)
-# } else {
+# def soldiers_awards
+# puts "Please enter soldier's name"
+# user_input = gets.chomp
+# selected_soldier = Soldier.find_by(name: user_input)
+# selected_soldier ? selected_soldier.list_awards : "This soldier does not exist"
+# end
 
-# }
+# puts soldiers_awards
+
+
+
+Mission.full_mission_details
+
 
 # Award.say_hello
 # Soldier.add_a_soldier

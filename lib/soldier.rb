@@ -1,27 +1,28 @@
 require 'pry'
 class Soldier < ActiveRecord::Base
+
     has_many :missions
     has_many :awards, through: :missions 
 
-    def self.add_a_soldier
-        puts "Please enter soldier's name"
-        name = gets.chomp
-        puts "Please enter soldier's age"
-        age = gets.chomp
-        puts "Please enter soldier's rank"
-        rank = gets.chomp
-        puts "Please enter soldier's rating"
-        rating = gets.chomp
+    # def self.add_a_soldier
+    #     puts "Please enter soldier's name"
+    #     name = gets.chomp
+    #     puts "Please enter soldier's age"
+    #     age = gets.chomp
+    #     puts "Please enter soldier's rank"
+    #     rank = gets.chomp
+    #     puts "Please enter soldier's rating"
+    #     rating = gets.chomp
         
-        new_soldier = Soldier.new(name, age, rank, rating)
-        # puts new_soldier
-    end
+    #     new_soldier = Soldier.new(name, age, rank, rating)
+    #     # puts new_soldier
+    # end
 
     def list_awards
-        selectedSoldier.awards.map do |award|
+        self.awards.map do |award|
             award.name
         end
-        binding.pry
+        # binding.pry
         # soldiers_awards = (Award.all.map do |award|
         #     award.name == 
         # end)
