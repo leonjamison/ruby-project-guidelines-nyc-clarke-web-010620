@@ -14,6 +14,6 @@ award3 = Award.create(name: "Noble Knight", location: "Jupiter")
 
 #missions
 
-mission1 = Mission.create(name: "Interplanetary", location: "Mars", award_id: 2, soldier_id: 1)
-mission2 = Mission.create(name: "Conus", location: "Earth", award_id: 1, soldier_id: 3)
-mission3 = Mission.create(name: "Oconus", location: "Jupiter", award_id: 3, soldier_id: 2)
+mission1 = Mission.create(name: "Interplanetary", location: "Mars", award_id: award2.id, soldier_id: soldier1.id)
+mission2 = Mission.create(name: "Conus", location: "Earth", award_id: award1.id, soldier_id: soldier3.id)
+mission3 = Mission.create(name: "Oconus", location: "Jupiter", award_id: award3.id, soldier_id: soldier2.id)
