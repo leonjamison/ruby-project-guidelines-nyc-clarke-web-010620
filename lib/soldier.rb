@@ -14,7 +14,13 @@ class Soldier < ActiveRecord::Base
         puts "Please enter soldier's rating"
         rating = gets.chomp
         
-        new_soldier = Soldier.new(name, age, rank, rating)
+        new_soldier = Soldier.new(name: name, age: age, rank: rank, rating: rating)
+        if new_soldier == Soldier.find_by(name: name, age: age, rank: rank, rating: rating)
+            puts "Soldier Already Exist" 
+        else
+            new_soldier.save
+            puts "Soldier has been created."
+        end 
         # puts new_soldier
     end
 
@@ -31,11 +37,11 @@ class Soldier < ActiveRecord::Base
     end
 
     def self.remove_soldier 
+    # binding.pry
         puts "Please enter soldiers name you will like to remove?"
         user_input = gets.chomp 
-        erase_soldier = Soldier.find_by(user_input)
-        # binding.pry
-        erase_soldier ? delete_soldier.destroy : "Soldier not found, please try again."
+        delete_soldier = Soldier.find_by(name: user_input)
+        delete_soldier ? delete_soldier.destroy : "Soldier not found, please try again."
     end
 
     
