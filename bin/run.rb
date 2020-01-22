@@ -9,22 +9,6 @@ require_relative '../lib/mission.rb'
 
 
 # "Check soldier's list of awards"
-<<<<<<< HEAD
-puts "Please enter soldier's name"
-user_input = gets.chomp
-selectedSoldier.awards.map do |award|
-    award.name
-end 
-
-# selectedSoldier = Soldier.find_by(name: user_input)
-# puts selectedSoldier
-binding.pry
-# if selectedSoldier {
-#     Soldier.list_awards(user_input)
-# } else {
-
-# }
-=======
 # def soldiers_awards
 # puts "Please enter soldier's name"
 # user_input = gets.chomp
@@ -36,15 +20,14 @@ binding.pry
 
 
 
-Mission.full_mission_details
+# Mission.full_mission_details
 
->>>>>>> b02e6045d0b90daf05cb78f20a5f00d370040743
 
 # Award.say_hello
 # Soldier.add_a_soldier
 # Mission.verify_mission
 
-
+Soldier.remove_soldier
 
 
 # require 'tty-prompt'
