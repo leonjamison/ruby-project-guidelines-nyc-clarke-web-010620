@@ -28,6 +28,13 @@ class Soldier < ActiveRecord::Base
             # puts soldiers_awards
    
     end
+
+    def remove_soldier 
+
+
+
+
+    end 
     # "Check soldier's award status"
     # def self.award_status  #put in soldiers name and list their awards
     #     puts "Please enter the soldier's name whose awards you'd like to see"

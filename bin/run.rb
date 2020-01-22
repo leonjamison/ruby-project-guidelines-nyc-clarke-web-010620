@@ -11,8 +11,12 @@ require_relative '../lib/mission'
 # "Check soldier's list of awards"
 puts "Please enter soldier's name"
 user_input = gets.chomp
-selectedSoldier = Soldier.find_by(name: user_input)
-puts selectedSoldier
+selectedSoldier.awards.map do |award|
+    award.name
+end 
+
+# selectedSoldier = Soldier.find_by(name: user_input)
+# puts selectedSoldier
 binding.pry
 # if selectedSoldier {
 #     Soldier.list_awards(user_input)
