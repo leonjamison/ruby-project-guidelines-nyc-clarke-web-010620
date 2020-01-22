@@ -35,13 +35,26 @@ class Mission < ActiveRecord::Base
     def self.create_mission
         puts "Please create a name for this new mission"
         user_input = gets.chomp
-        binding.pry
-        mission_name = Mission.find_by(user_input)
+        mission_name = Mission.find_by(name: user_input)
+        # binding.pry
         if mission_name
-            puts "Great mission name"
-            new_mission = Mission.create(mission_name) 
-        else
+            # puts "Great mission name"
             puts "Sorry, that mission name already exists"
+        else
+            puts "What is the location for this mission?"
+            user_location = gets.chomp
+            puts "What is the soldier's name that will be assigned to this mission?"
+            soldiers_name = gets.chomp
+            #check if soldiers name exists--> if not, create new soldier
+            "What is the "
+            new_mission = Mission.new(name: user_input, location: user_location) 
+            puts new_mission
+            binding.pry
+            puts "Mission has been created."
+            puts "Mission name: #{new_mission.name}"
+            puts "Mission location: #{new_mission.location}"
+            puts "Mission : #{new_mission}"
+
         end
     end
 end
