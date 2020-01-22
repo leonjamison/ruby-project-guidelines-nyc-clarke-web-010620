@@ -24,7 +24,7 @@ Mission.create_mission
 
 
 # Award.say_hello
-# Soldier.add_a_soldier
+Soldier.add_a_soldier
 # Mission.verify_mission
 
 # Soldier.remove_soldier
