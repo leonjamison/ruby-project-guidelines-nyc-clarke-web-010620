@@ -1,8 +1,9 @@
 class Mission < ActiveRecord::Base
     belongs_to :award
     belongs_to :soldier
+    # validates :name
 
-    # returns names of person that has done that mission
+    # returns names of soldiers that have completed that mission
     def mission_roster
         soldiers_name_assigned_to_mission = self.soldier.name
         puts "The soldier that is assigned to this mission is #{soldiers_name_assigned_to_mission}." #look at this later...do i need #{?, soldiers_id_assigned_to_mission}?,
@@ -15,10 +16,10 @@ class Mission < ActiveRecord::Base
         puts "The award for successfully completing this mission is #{self.award.name}."
     end
 
-    def self.full_mission_details #who is assigned to this mission? also show mission details
+    def full_mission_details #who is assigned to this mission? also show mission details
         puts "Please enter name of mission"
-        user_input = gets.chomp 
-        selected_mission = Mission.find_by(name: user_input)
+        user_input_mission_name = gets.chomp 
+        selected_mission = Mission.find_by(name: user_input_mission_name)
        
         if selected_mission 
             selected_mission.mission_roster 
@@ -28,33 +29,85 @@ class Mission < ActiveRecord::Base
         end
     end
 
-    def check_if_mission_name_exists     
-    end
+    # soldier.all.any?(name: soldiers_name)
 
-    # "Create a new mission"
-    def self.create_mission
-        puts "Please create a name for this new mission"
-        user_input = gets.chomp
-        mission_name = Mission.find_by(name: user_input)
+    def self.get_soldier_name #takes input of a soldier name from user and checks to see if soldiers name is already in database
+        puts "What is the soldier's name that will be assigned to this mission?"
+        soldiers_name = gets.chomp
         # binding.pry
-        if mission_name
-            # puts "Great mission name"
-            puts "Sorry, that mission name already exists"
+        if Soldier.find_by(name: soldiers_name) #check if soldiers name exists--> for later dev, if multiple same names...check by id next
+            # binding.pry
+            puts "Assigning soldier..."
+            soldiers_name_object = Soldier.find_by(name: soldiers_name)
+            soldiers_name_object
         else
-            puts "What is the location for this mission?"
-            user_location = gets.chomp
-            puts "What is the soldier's name that will be assigned to this mission?"
-            soldiers_name = gets.chomp
-            #check if soldiers name exists--> if not, create new soldier
-            "What is the "
-            new_mission = Mission.new(name: user_input, location: user_location) 
-            puts new_mission
-            binding.pry
-            puts "Mission has been created."
-            puts "Mission name: #{new_mission.name}"
-            puts "Mission location: #{new_mission.location}"
-            puts "Mission : #{new_mission}"
-
+            puts "Soldier not found, please enter an active duty soldier."
+            get_soldier_name
         end
     end
+
+    def self.get_mission_name #takes input from user for a new mission name. If mission name is already taken, prompts user to give a new mission name.
+        puts "Please create a name for this new mission"
+        user_input_missionname = gets.chomp
+        mission_name = Mission.find_by(name: user_input_missionname)
+        # binding.pry
+        if mission_name
+            puts "Sorry, that mission name already exists"
+            get_mission_name
+        else
+            puts "...Assigning mission_name: #{user_input_missionname}..."
+            user_input_missionname
+        end
+    end
+
+    def self.get_award_name
+            #takes input from user for an award name. If the award name already exists in the system, asks user to enter a new award name
+            puts "What is the name of the award that will be given after successfully completing this mission?"
+            award_name = gets.chomp
+            # binding.pry
+            if Award.find_by(name: award_name)
+                new_missions_award_name = Award.find_by(name: award_name)
+                # binding.pry
+            else
+                puts "This award does not exist. Please enter a valid award."
+                get_award_name
+            end
+                #does an if have to have an else stmt? how to use not
+            # award_name.create_award #check if award exists, if not create new one
+    end
+
+    # "Creates a new mission"
+    def self.new_mission
+
+        #mission name
+        new_mission_name = Mission.get_mission_name
+
+        #location
+        puts "What is the location for this mission?"
+        user_location = gets.chomp
+
+        #soldier name
+        soldier_name = Mission.get_soldier_name
+
+        # award 
+        missions_award_name = Mission.get_award_name
+    
+        #create new mission
+        new_mission = Mission.create(name: new_mission_name, location: user_location, award_id: missions_award_name.id, soldier_id: soldier_name.id) 
+
+            puts "Mission has been created."
+            puts "Mission name: #{new_mission_name}"
+            puts "Mission location: #{user_location}"
+            puts "Mission award: #{missions_award_name.name}"
+            puts "Soldier assigned to mission: #{soldier_name.name}"
+    end
+
+    def self.remove_mission
+        # binding.pry
+            puts "Please enter the mission name you would like to remove."
+            user_input = gets.chomp
+            delete_mission = Mission.find_by(name: user_input)
+            delete_mission ? delete_mission.destroy : "Mission not found, please enter a valid mission name."
+    end
+
 end

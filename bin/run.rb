@@ -17,14 +17,22 @@ require_relative '../lib/mission'
 # end
 
 # puts soldiers_awards
+# Soldier.remove_soldier
 
-
+# Award.create_award
+# Mission.get_award_name
 # Mission.full_mission_details
-Mission.create_mission
+# Mission.create_mission
 
+# Mission.get_soldier_name
+Mission.new_mission
+
+# Soldier.list_awards
+# Soldier.remove_soldier
+# Mission.remove_mission
 
 # Award.say_hello
-Soldier.add_a_soldier
+# Soldier.add_a_soldier
 # Mission.verify_mission
 
 # Soldier.remove_soldier
