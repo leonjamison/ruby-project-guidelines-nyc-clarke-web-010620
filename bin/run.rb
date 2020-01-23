@@ -2,59 +2,79 @@ require_relative '../config/environment'
 require_relative '../lib/award'
 require_relative '../lib/soldier'
 require_relative '../lib/mission'
-
-# puts "Welcome. What would you like to do?"
-# user_input = gets.chomp
+require 'tty-prompt'
 
 
+def start
+    # prompt = TTY::Prompt.new
+    puts "Please enter username:"
+    user_name = gets.chomp
+    # prompt.mask("Please enter password:")
+    puts "Please enter password:"
+    password = gets.chomp.to_i
 
-# "Check soldier's list of awards"
-# def soldiers_awards
-# puts "Please enter soldier's name"
-# user_input = gets.chomp
-# selected_soldier = Soldier.find_by(name: user_input)
-# selected_soldier ? selected_soldier.list_awards : "This soldier does not exist"
-# end
+    user = Login.all.first
+    # binding.pry
+    if (user.username == user_name && user.password == password)
+        run
+    else
+        puts "Please enter correct username and password"
+        start
+    end
+end
 
-# puts soldiers_awards
-# Soldier.remove_soldier
+    def run
 
-# Award.create_award
-# Mission.get_award_name
-# Mission.full_mission_details
-# Mission.create_mission
+        # login_method
 
-# Mission.get_soldier_name
-Mission.new_mission
+        prompt = TTY::Prompt.new
+        # system('clear')
+        prompt.select("Welcome. What would you like to do?") do |menu|
 
-# Soldier.list_awards
-# Soldier.remove_soldier
-# Mission.remove_mission
+            menu.choice "Delete Soldier" do
+                Soldier.remove_soldier
+                run
+            end
+            menu.choice "Create New Award" do
+                Award.create_award
+                run
+            end
+            menu.choice "Delete Award" do
+                Award.remove_award
+                run
+            end
+            menu.choice "Check Soldier's List of Awards" do
+                Soldier.list_award
+                run
+            end
+            menu.choice "Create New Mission" do
+                Mission.new_mission
+                run
+            end
+            menu.choice "Delete Mission" do
+                Mission.remove_mission
+                run
+            end
+            menu.choice "Add Soldier" do
+                Soldier.add_a_soldier
+                run
+            end
+            menu.choice "Exit" do
+                exit!
+            end
+        end
+    end
+        
+start
 
-# Award.say_hello
-# Soldier.add_a_soldier
-# Mission.verify_mission
+# prompt = TTY::Prompt.new
+# prompt.mask("Please enter password to access system", required: true)
+        
 
-# Soldier.remove_soldier
-
-Award.create_award 
-
-
-# require 'tty-prompt'
-
-# system("clear")
-
-# user_input = prompt.ask("Welcome! What would you like to do?")
-# puts A
-# user_input = gets.chomp
-
-## Want To Be Able Too...##
-
-# "Log on/ be asked what would you like to do.."
-# "Add/Delete a soldier"
-# "Verify mission details"
-# "Check soldier's list of awards"
-# "Create a new award"
-# "Create/Delete a new mission"
-# "Assign a soldier to mission"
+    # prompt.choice "Verify Soldier"
+    # prompt.choice "Verify Award"
+    # prompt.choice "Mission Roster"
+    # prompt.choice "Verify Standard Mission Details"
+    # prompt.choice "Verify Full Mission Details"
+    # prompt.choice "Verify Mission Name"
 

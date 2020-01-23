@@ -6,7 +6,7 @@ class Mission < ActiveRecord::Base
     # returns names of soldiers that have completed that mission
     def mission_roster
         soldiers_name_assigned_to_mission = self.soldier.name
-        puts "The soldier that is assigned to this mission is #{soldiers_name_assigned_to_mission}." #look at this later...do i need #{?, soldiers_id_assigned_to_mission}?,
+        puts "The soldier that is assigned to this mission is #{soldiers_name_assigned_to_mission}."
     end
 
     # returns details of the mission passed through
@@ -16,7 +16,7 @@ class Mission < ActiveRecord::Base
         puts "The award for successfully completing this mission is #{self.award.name}."
     end
 
-    def full_mission_details #who is assigned to this mission? also show mission details
+    def self.full_mission_details #who is assigned to this mission? also show mission details
         puts "Please enter name of mission"
         user_input_mission_name = gets.chomp 
         selected_mission = Mission.find_by(name: user_input_mission_name)

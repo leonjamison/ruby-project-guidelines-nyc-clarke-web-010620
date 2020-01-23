@@ -1,3 +1,4 @@
+
 class Award < ActiveRecord::Base
     has_many :missions
     has_many :soldiers, through: :missions

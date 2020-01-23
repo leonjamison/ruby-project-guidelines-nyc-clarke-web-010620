@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200121194907) do
+ActiveRecord::Schema.define(version: 20200123203433) do
 
   create_table "awards", force: :cascade do |t|
     t.string "name"
     t.string "location"
+  end
+
+  create_table "logins", force: :cascade do |t|
+    t.string  "username"
+    t.integer "password"
   end
 
   create_table "missions", force: :cascade do |t|

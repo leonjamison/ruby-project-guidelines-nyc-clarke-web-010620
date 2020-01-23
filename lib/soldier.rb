@@ -4,7 +4,6 @@ class Soldier < ActiveRecord::Base
     has_many :missions
     has_many :awards, through: :missions 
 
-
     def self.add_a_soldier
         puts "Please enter soldier's name"
         name = gets.chomp
@@ -41,13 +40,11 @@ class Soldier < ActiveRecord::Base
     def self.remove_soldier 
         puts "Please enter soldier's name, and id (separated by commas) that you would like to remove?"
         
-        user_input_name = gets.chomp.split(", ")    #[Bill, 6] # come back and fix this to where if no space is placed in between comma it will still be 2 strings
-        # binding.pry
+        user_input_name = gets.chomp.split(",").map(&:strip)    #[Bill, 6] # come back and fix this to where if no space is placed in between comma it will still be 2 strings
         name = user_input_name[0]
         id = user_input_name[1]
         finding_soldier_to_delete = Soldier.find_by(name: name, id: id)
         Soldier.delete(finding_soldier_to_delete)
-        binding.pry
     end
 
 
