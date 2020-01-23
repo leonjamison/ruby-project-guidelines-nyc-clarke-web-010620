@@ -18,16 +18,19 @@ require_relative '../lib/mission'
 
 # puts soldiers_awards
 
-
+# Soldier.list_awards 
 # Mission.full_mission_details
-Mission.create_mission
+# Mission.create_mission
 
+# Soldier.award_status
 
 # Award.say_hello
-Soldier.add_a_soldier
+# Soldier.add_a_soldier
 # Mission.verify_mission
 
 # Soldier.remove_soldier
+
+Award.create_award 
 
 
 # require 'tty-prompt'
@@ -38,8 +41,13 @@ Soldier.add_a_soldier
 # puts A
 # user_input = gets.chomp
 
-# "Add a soldier"
-# "Verify mission"
+## Want To Be Able Too...##
+
+# "Log on/ be asked what would you like to do.."
+# "Add/Delete a soldier"
+# "Verify mission details"
 # "Check soldier's list of awards"
-# "Remove soldier from active status"
-# "Create a new mission"
+# "Create a new award"
+# "Create/Delete a new mission"
+# "Assign a soldier to mission"
+

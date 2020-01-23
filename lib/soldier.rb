@@ -24,16 +24,19 @@ class Soldier < ActiveRecord::Base
         # puts new_soldier
     end
 
-    def list_awards
-        self.awards.map do |award|
-            award.name
-        end
-        # binding.pry
-        # soldiers_awards = (Award.all.map do |award|
-        #     award.name == 
-        # end)
-            # puts soldiers_awards
-   
+    def self.list_awards
+        puts "For which soldier awards would you like to see?"
+        soldiername_input = gets.chomp
+        list_of_awards_input = Soldier.find_by(name: soldiername_input)
+    
+        if list_of_awards_input
+            list_of_awards_input.awards.each do |award|
+                award.name  
+                puts award.name
+            end
+        else
+            puts "No awards found!"
+        end 
     end
 
     def self.remove_soldier 
@@ -55,7 +58,7 @@ class Soldier < ActiveRecord::Base
 
     #         soldier object
     #         if soldier object id is in 
-    #             Mission.all.select do |mission|
+    #             Mission.all.select do |mission|`
     #                 mission.soldier_id == name_from_user_exists?.id
     #                 mission.award_id.
 
