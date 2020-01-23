@@ -19,13 +19,6 @@ require_relative '../lib/mission'
 # puts soldiers_awards
 # Soldier.remove_soldier
 
-<<<<<<< HEAD
-# Soldier.list_awards 
-# Mission.full_mission_details
-# Mission.create_mission
-
-# Soldier.award_status
-=======
 # Award.create_award
 # Mission.get_award_name
 # Mission.full_mission_details
@@ -37,7 +30,6 @@ Mission.new_mission
 # Soldier.list_awards
 # Soldier.remove_soldier
 # Mission.remove_mission
->>>>>>> 99b8f1949adec5cec2782f28ec23f596dceb8016
 
 # Award.say_hello
 # Soldier.add_a_soldier

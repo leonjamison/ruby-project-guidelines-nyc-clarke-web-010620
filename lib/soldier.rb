@@ -28,25 +28,14 @@ class Soldier < ActiveRecord::Base
         puts "For which soldier awards would you like to see?"
         soldiername_input = gets.chomp
         list_of_awards_input = Soldier.find_by(name: soldiername_input)
-<<<<<<< HEAD
-    
-        if list_of_awards_input
-            list_of_awards_input.awards.each do |award|
-                award.name  
-=======
         if list_of_awards_input
             list_of_awards_input.awards.each do |award|
                 award.name
->>>>>>> 99b8f1949adec5cec2782f28ec23f596dceb8016
                 puts award.name
             end
         else
             puts "No awards found!"
-<<<<<<< HEAD
-        end 
-=======
         end
->>>>>>> 99b8f1949adec5cec2782f28ec23f596dceb8016
     end
 
     def self.remove_soldier 
@@ -61,25 +50,6 @@ class Soldier < ActiveRecord::Base
         binding.pry
     end
 
-<<<<<<< HEAD
-    
-    # "Check soldier's award status"
-    # def self.award_status  #put in soldiers name and list their awards
-    #     puts "Please enter the soldier's name whose awards you'd like to see"
-    #     user_input = gets.chomp
-    #     # validation --> does this award exist
-    #     name_from_user_exists? = Soldier.all.select do |award|
-    #         soldier.name == user_input
-
-    #         soldier object
-    #         if soldier object id is in 
-    #             Mission.all.select do |mission|`
-    #                 mission.soldier_id == name_from_user_exists?.id
-    #                 mission.award_id.
-
-    # end
-=======
->>>>>>> 99b8f1949adec5cec2782f28ec23f596dceb8016
 
 end
  
