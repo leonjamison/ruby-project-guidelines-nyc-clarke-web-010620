@@ -4,6 +4,7 @@ class Soldier < ActiveRecord::Base
     has_many :missions
     has_many :awards, through: :missions 
 
+
     def self.add_a_soldier
         puts "Please enter soldier's name"
         name = gets.chomp
@@ -13,40 +14,54 @@ class Soldier < ActiveRecord::Base
         rank = gets.chomp
         puts "Please enter soldier's rating"
         rating = gets.chomp
-        
-        new_soldier = Soldier.new(name: name, age: age, rank: rank, rating: rating)
-        if new_soldier == Soldier.find_by(name: name, age: age, rank: rank, rating: rating)
-            puts "Soldier Already Exist" 
+
+        if Soldier.find_by(name: name, age: age, rank: rank, rating: rating)
+            puts "This soldier is already in the database."
         else
-            new_soldier.save
-            puts "Soldier has been created."
-        end 
-        # puts new_soldier
+            Soldier.new(name: name, age: age, rank: rank, rating: rating)
+            puts "Soldier has been added to the system."
+        end
+ 
     end
 
     def self.list_awards
         puts "For which soldier awards would you like to see?"
         soldiername_input = gets.chomp
         list_of_awards_input = Soldier.find_by(name: soldiername_input)
+<<<<<<< HEAD
     
         if list_of_awards_input
             list_of_awards_input.awards.each do |award|
                 award.name  
+=======
+        if list_of_awards_input
+            list_of_awards_input.awards.each do |award|
+                award.name
+>>>>>>> 99b8f1949adec5cec2782f28ec23f596dceb8016
                 puts award.name
             end
         else
             puts "No awards found!"
+<<<<<<< HEAD
         end 
+=======
+        end
+>>>>>>> 99b8f1949adec5cec2782f28ec23f596dceb8016
     end
 
     def self.remove_soldier 
-    # binding.pry
-        puts "Please enter soldiers name you will like to remove?"
-        user_input = gets.chomp 
-        delete_soldier = Soldier.find_by(name: user_input)
-        delete_soldier ? delete_soldier.destroy : "Soldier not found, please try again."
+        puts "Please enter soldier's name, and id (separated by commas) that you would like to remove?"
+        
+        user_input_name = gets.chomp.split(", ")    #[Bill, 6] # come back and fix this to where if no space is placed in between comma it will still be 2 strings
+        # binding.pry
+        name = user_input_name[0]
+        id = user_input_name[1]
+        finding_soldier_to_delete = Soldier.find_by(name: name, id: id)
+        Soldier.delete(finding_soldier_to_delete)
+        binding.pry
     end
 
+<<<<<<< HEAD
     
     # "Check soldier's award status"
     # def self.award_status  #put in soldiers name and list their awards
@@ -63,6 +78,8 @@ class Soldier < ActiveRecord::Base
     #                 mission.award_id.
 
     # end
+=======
+>>>>>>> 99b8f1949adec5cec2782f28ec23f596dceb8016
 
 end
  
