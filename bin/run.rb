@@ -5,17 +5,15 @@ require_relative '../lib/mission'
 require 'tty-prompt'
 
 
+
+
 def start
-    # prompt = TTY::Prompt.new
+    prompt = TTY::Prompt.new
     puts "Please enter username:"
     user_name = gets.chomp
-    # prompt.mask("Please enter password:")
-    puts "Please enter password:"
-    password = gets.chomp.to_i
-
+    password = prompt.mask("Please enter password:")
     user = Login.all.first
-    # binding.pry
-    if (user.username == user_name && user.password == password)
+    if (user.username == user_name && user.password.to_s == password)
         run
     else
         puts "Please enter correct username and password"
@@ -25,14 +23,18 @@ end
 
     def run
 
-        # login_method
-
         prompt = TTY::Prompt.new
-        # system('clear')
         prompt.select("Welcome. What would you like to do?") do |menu|
-
-            menu.choice "Delete Soldier" do
+            menu.choice "Add Soldier to Active Duty" do
+                Soldier.add_a_soldier
+                run
+            end
+            menu.choice "Remove Soldier from Active Duty" do
                 Soldier.remove_soldier
+                run
+            end
+            menu.choice "Show All Active Duty Soldiers" do
+                Soldier.show_all_soldiers
                 run
             end
             menu.choice "Create New Award" do
@@ -43,20 +45,24 @@ end
                 Award.remove_award
                 run
             end
+            menu.choice "Show All Awards" do
+                Award.show_all_awards
+                run
+            end
             menu.choice "Check Soldier's List of Awards" do
-                Soldier.list_award
+                Soldier.list_awards
                 run
             end
             menu.choice "Create New Mission" do
                 Mission.new_mission
                 run
             end
-            menu.choice "Delete Mission" do
+            menu.choice "Remove Mission" do
                 Mission.remove_mission
                 run
             end
-            menu.choice "Add Soldier" do
-                Soldier.add_a_soldier
+            menu.choice "Show All Missions" do
+                Mission.show_all_missions
                 run
             end
             menu.choice "Exit" do
@@ -66,15 +72,4 @@ end
     end
         
 start
-
-# prompt = TTY::Prompt.new
-# prompt.mask("Please enter password to access system", required: true)
-        
-
-    # prompt.choice "Verify Soldier"
-    # prompt.choice "Verify Award"
-    # prompt.choice "Mission Roster"
-    # prompt.choice "Verify Standard Mission Details"
-    # prompt.choice "Verify Full Mission Details"
-    # prompt.choice "Verify Mission Name"
 

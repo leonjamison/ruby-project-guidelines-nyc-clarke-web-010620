@@ -14,6 +14,7 @@ class Mission < ActiveRecord::Base
         puts "The name of this mission is #{self.name}."
         puts "The location of this mission is #{self.location}."
         puts "The award for successfully completing this mission is #{self.award.name}."
+        puts "----------------------------------------"
     end
 
     def self.full_mission_details #who is assigned to this mission? also show mission details
@@ -26,6 +27,7 @@ class Mission < ActiveRecord::Base
             selected_mission.mission_details      
         else
             puts "This mission does not exist."
+            puts "----------------------------------------"
         end
     end
 
@@ -42,6 +44,7 @@ class Mission < ActiveRecord::Base
             soldiers_name_object
         else
             puts "Soldier not found, please enter an active duty soldier."
+            puts "----------------------------------------"
             get_soldier_name
         end
     end
@@ -94,12 +97,19 @@ class Mission < ActiveRecord::Base
     
         #create new mission
         new_mission = Mission.create(name: new_mission_name, location: user_location, award_id: missions_award_name.id, soldier_id: soldier_name.id) 
-
+            sleep 1
             puts "Mission has been created."
+            sleep 1
             puts "Mission name: #{new_mission_name}"
+            sleep 1
             puts "Mission location: #{user_location}"
+            sleep 1
             puts "Mission award: #{missions_award_name.name}"
+            sleep 1
             puts "Soldier assigned to mission: #{soldier_name.name}"
+            sleep 1
+            puts "----------------------------------------"
+            sleep 1
     end
 
     def self.remove_mission
@@ -107,7 +117,23 @@ class Mission < ActiveRecord::Base
             puts "Please enter the mission name you would like to remove."
             user_input = gets.chomp
             delete_mission = Mission.find_by(name: user_input)
-            delete_mission ? delete_mission.destroy : "Mission not found, please enter a valid mission name."
+            if delete_mission
+                delete_mission.destroy 
+                puts "Mission has been removed"
+                puts "----------------------------------------"
+            else
+                puts "Mission not found, please enter a valid mission name."
+                puts "----------------------------------------"
+            end
+    end
+
+    def self.show_all_missions
+        Mission.all.map do |mission|
+            # binding.pry
+            puts "Mission's name: #{mission.name}"
+            puts "Mission's location:  #{mission.location}"
+            puts "----------------------------------------"
+        end
     end
 
 end
